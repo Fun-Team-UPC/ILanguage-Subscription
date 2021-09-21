@@ -1,0 +1,12 @@
+package com.edu.upc.ilanguagesubscription.command.api;
+
+import io.swagger.annotations.Api;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/subscriptions")
+@Api(tags = "Customers")
+public class SubscriptionCommandController {
+
+}
