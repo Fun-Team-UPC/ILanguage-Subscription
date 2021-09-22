@@ -1,6 +1,6 @@
 package com.edu.upc.ilanguagesubscription.command.application.dto;
 
-public class EditSubscriptionRequestDto {
+public class RegisterSubscriptionRequestDto {
     private int subscriptionId;
     private String name;
     private int price;
@@ -10,7 +10,7 @@ public class EditSubscriptionRequestDto {
         return name;
     }
 
-    public float getPrice() {
+    public int getPrice() {
         return price;
     }
 
