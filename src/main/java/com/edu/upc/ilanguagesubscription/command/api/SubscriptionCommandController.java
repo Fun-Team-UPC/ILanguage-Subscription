@@ -3,6 +3,7 @@ package com.edu.upc.ilanguagesubscription.command.api;
 import com.edu.upc.ilanguagesubscription.command.application.dto.RegisterSubscriptionErrorResponse;
 import com.edu.upc.ilanguagesubscription.command.application.dto.RegisterSubscriptionOkResponse;
 import com.edu.upc.ilanguagesubscription.command.application.dto.RegisterSubscriptionRequestDto;
+import com.edu.upc.ilanguagesubscription.command.domain.contracts.commands.RegisterSubscription;
 import com.edu.upc.ilanguagesubscription.command.infra.SubscriptionInfra;
 import com.edu.upc.ilanguagesubscription.command.infra.SubscriptionRepository;
 import io.swagger.annotations.Api;
@@ -43,8 +44,8 @@ public class SubscriptionCommandController {
         RegisterSubscription registerSubscription = new RegisterSubscription(
                 subscriptionId,
                 registerSubscriptionRequestDto.getName(),
-                registerSubscriptionRequestDto.getPrice(),
-                registerSubscriptionRequestDto.getMonthDuration()
+                registerSubscriptionRequestDto.getMonthDuration(),
+                registerSubscriptionRequestDto.getPrice()
         );
         CompletableFuture<Object> future = _commandGateway.send(registerSubscription);
         CompletableFuture<Object> futureResponse = future.handle((ok, ex) -> {

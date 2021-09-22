@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
-@Repository
+
 public interface SubscriptionRepository extends JpaRepository<SubscriptionInfra, Integer> {
 
     //!Query refers to the class (MODEL)
