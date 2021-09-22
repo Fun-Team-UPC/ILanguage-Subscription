@@ -32,13 +32,13 @@ public class SubscriptionHistoryView {
     @Column(nullable = true)
     private Instant updatedAt;
 
-    public SubscriptionHistoryView(int id, int price, int monthDuration, String name, Instant createdAt, Instant updatedAt) {
+    public SubscriptionHistoryView(int id, int price, int monthDuration, String name, Instant createdAt) {
         this.subscriptionId = id;
         this.price = price;
         this.monthDuration = monthDuration;
         this.name = name;
         this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
+
     }
     public SubscriptionHistoryView(SubscriptionHistoryView subscriptionHistoryView){
         this.subscriptionId = subscriptionHistoryView.getSubscriptionId();

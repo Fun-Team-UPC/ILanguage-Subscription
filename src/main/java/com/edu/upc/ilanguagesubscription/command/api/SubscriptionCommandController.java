@@ -5,7 +5,7 @@ import com.edu.upc.ilanguagesubscription.command.application.dto.RegisterSubscri
 import com.edu.upc.ilanguagesubscription.command.application.dto.RegisterSubscriptionRequestDto;
 import com.edu.upc.ilanguagesubscription.command.domain.contracts.commands.RegisterSubscription;
 import com.edu.upc.ilanguagesubscription.command.infra.SubscriptionInfra;
-import com.edu.upc.ilanguagesubscription.command.infra.SubscriptionRepository;
+import com.edu.upc.ilanguagesubscription.command.infra.SubscriptionInfraRepository;
 import io.swagger.annotations.Api;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.http.HttpStatus;
@@ -25,24 +25,24 @@ import java.util.concurrent.ExecutionException;
 @Api(tags = "Customers")
 public class SubscriptionCommandController {
     private final CommandGateway _commandGateway;
-    private final SubscriptionRepository _subscriptionRepository;
+    private final SubscriptionInfraRepository _subscriptionRepository;
 
 
-    public SubscriptionCommandController(CommandGateway commandGateway, SubscriptionRepository subscriptionRepository) {
+    public SubscriptionCommandController(CommandGateway commandGateway, SubscriptionInfraRepository subscriptionRepository) {
         _commandGateway = commandGateway;
         _subscriptionRepository = subscriptionRepository;
     }
 
     @PostMapping("")
     public ResponseEntity<Object> register(@RequestBody RegisterSubscriptionRequestDto registerSubscriptionRequestDto) {
-        Optional<SubscriptionInfra> existingSubscriptionInfra = _subscriptionRepository.findById(registerSubscriptionRequestDto.getSubscriptionId());
+        Optional<SubscriptionInfra> existingSubscriptionInfra = _subscriptionRepository.findByPrice(registerSubscriptionRequestDto.getPrice());
         if (existingSubscriptionInfra.isPresent()) {
             return new ResponseEntity(new RegisterSubscriptionErrorResponse(), HttpStatus.BAD_REQUEST);
         }
-        int subscriptionId = Integer.parseInt(UUID.randomUUID().toString());
+        //int subscriptionId = Integer.parseInt(UUID.randomUUID().toString());
 
         RegisterSubscription registerSubscription = new RegisterSubscription(
-                subscriptionId,
+                registerSubscriptionRequestDto.getPrice()+465,
                 registerSubscriptionRequestDto.getName(),
                 registerSubscriptionRequestDto.getMonthDuration(),
                 registerSubscriptionRequestDto.getPrice()
@@ -52,12 +52,12 @@ public class SubscriptionCommandController {
             if (ex != null) {
                 return new RegisterSubscriptionErrorResponse();
             }
-            return new RegisterSubscriptionOkResponse(subscriptionId);
+            return new RegisterSubscriptionOkResponse(registerSubscriptionRequestDto.getPrice()+465);
         });
 
         Object response = null;
         try {
-            response = (Object) futureResponse.get();
+            response = futureResponse.get();
             if (response instanceof RegisterSubscriptionOkResponse) {
                 return new ResponseEntity(response, HttpStatus.CREATED);
             }

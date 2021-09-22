@@ -9,6 +9,6 @@ public class RegisterSubscription {
     int subscriptionId;
     String name;
     int monthDuration;
-    float price;
+    int price;
 
 }

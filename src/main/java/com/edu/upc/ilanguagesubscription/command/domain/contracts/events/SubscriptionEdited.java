@@ -9,6 +9,6 @@ public class SubscriptionEdited {
     int subscriptionId;
     String name;
     int monthDuration;
-    float price;
+    int price;
     Instant occurredOn;
 }

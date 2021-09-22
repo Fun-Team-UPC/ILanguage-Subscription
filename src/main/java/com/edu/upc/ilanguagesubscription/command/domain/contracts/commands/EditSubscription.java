@@ -10,5 +10,5 @@ public class EditSubscription {
     int subscriptionId;
     String name;
     int monthDuration;
-    float price;
+    int price;
 }

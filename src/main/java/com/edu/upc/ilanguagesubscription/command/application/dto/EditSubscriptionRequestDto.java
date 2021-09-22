@@ -3,7 +3,7 @@ package com.edu.upc.ilanguagesubscription.command.application.dto;
 public class EditSubscriptionRequestDto {
     private int subscriptionId;
     private String name;
-    private float price;
+    private int price;
     private int monthDuration;
 
     public String getName() {

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 
-public interface SubscriptionRepository extends JpaRepository<SubscriptionInfra, Integer> {
+public interface SubscriptionInfraRepository extends JpaRepository<SubscriptionInfra, Integer> {
 
     //!Query refers to the class (MODEL)
     @Query("SELECT s FROM SubscriptionInfra s WHERE s.name = ?1")
