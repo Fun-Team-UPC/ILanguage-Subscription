@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
+import java.util.Random;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
@@ -40,9 +41,11 @@ public class SubscriptionCommandController {
             return new ResponseEntity(new RegisterSubscriptionErrorResponse(), HttpStatus.BAD_REQUEST);
         }
         //int subscriptionId = Integer.parseInt(UUID.randomUUID().toString());
+        Random random = new Random();
+        int subscriptionId = random.nextInt(999999)+48646;
 
         RegisterSubscription registerSubscription = new RegisterSubscription(
-                registerSubscriptionRequestDto.getPrice()+465,
+                subscriptionId,
                 registerSubscriptionRequestDto.getName(),
                 registerSubscriptionRequestDto.getMonthDuration(),
                 registerSubscriptionRequestDto.getPrice()
@@ -52,7 +55,7 @@ public class SubscriptionCommandController {
             if (ex != null) {
                 return new RegisterSubscriptionErrorResponse();
             }
-            return new RegisterSubscriptionOkResponse(registerSubscriptionRequestDto.getPrice()+465);
+            return new RegisterSubscriptionOkResponse(subscriptionId);
         });
 
         Object response = null;
