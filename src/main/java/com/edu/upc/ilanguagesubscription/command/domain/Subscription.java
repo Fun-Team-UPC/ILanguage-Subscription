@@ -15,7 +15,7 @@ import java.time.Instant;
 @Aggregate
 public class Subscription {
     @AggregateIdentifier
-    private int subscriptionId;
+    private String subscriptionId;
     private int price;
     private int monthDuration;
     private String name;

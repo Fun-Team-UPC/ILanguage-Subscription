@@ -6,7 +6,7 @@ import java.time.Instant;
 
 @Value
 public class SubscriptionRegistered {
-    int subscriptionId;
+    String subscriptionId;
     String name;
     int monthDuration;
     int price;

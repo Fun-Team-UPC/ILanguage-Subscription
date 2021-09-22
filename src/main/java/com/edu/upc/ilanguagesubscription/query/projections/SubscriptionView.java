@@ -17,7 +17,7 @@ import java.time.Instant;
 @NoArgsConstructor
 public class SubscriptionView {
     @Id
-    private int id;
+    private String id;
     @Column()
     public int price;
     @Column()
@@ -28,7 +28,7 @@ public class SubscriptionView {
     @Column(nullable = true)
     private Instant updatedAt;
 
-    public SubscriptionView(int id, int price, int monthDuration, String name, Instant createdAt) {
+    public SubscriptionView(String id, int price, int monthDuration, String name, Instant createdAt) {
         this.id = id;
         this.price = price;
         this.monthDuration = monthDuration;

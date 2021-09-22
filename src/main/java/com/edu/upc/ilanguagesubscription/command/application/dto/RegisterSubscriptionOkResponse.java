@@ -1,12 +1,12 @@
 package com.edu.upc.ilanguagesubscription.command.application.dto;
 
 public class RegisterSubscriptionOkResponse {
-    private int subscriptionId;
+    private String subscriptionId;
 
-    public RegisterSubscriptionOkResponse(int subscriptionId) {
+    public RegisterSubscriptionOkResponse(String subscriptionId) {
         this.subscriptionId = subscriptionId;
     }
-    public int getSubscriptionId() {
+    public String getSubscriptionId() {
         return subscriptionId;
     }
 }

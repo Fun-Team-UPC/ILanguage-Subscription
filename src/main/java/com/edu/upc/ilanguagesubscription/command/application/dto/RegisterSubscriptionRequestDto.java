@@ -1,7 +1,7 @@
 package com.edu.upc.ilanguagesubscription.command.application.dto;
 
 public class RegisterSubscriptionRequestDto {
-    private int subscriptionId;
+    private String subscriptionId;
     private String name;
     private int price;
     private int monthDuration;
@@ -18,11 +18,11 @@ public class RegisterSubscriptionRequestDto {
         return monthDuration;
     }
 
-    public int getSubscriptionId() {
+    public String getSubscriptionId() {
         return subscriptionId;
     }
 
-    public void setSubscriptionId(int subscriptionId) {
+    public void setSubscriptionId(String subscriptionId) {
         this.subscriptionId = subscriptionId;
     }
 }

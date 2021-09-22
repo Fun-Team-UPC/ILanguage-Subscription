@@ -18,7 +18,7 @@ import javax.validation.constraints.NotNull;
 public class SubscriptionInfra {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private String id;
 
 
     @NotNull

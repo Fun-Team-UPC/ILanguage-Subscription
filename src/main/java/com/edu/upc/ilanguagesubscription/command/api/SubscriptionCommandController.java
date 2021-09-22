@@ -40,9 +40,9 @@ public class SubscriptionCommandController {
         if (existingSubscriptionInfra.isPresent()) {
             return new ResponseEntity(new RegisterSubscriptionErrorResponse(), HttpStatus.BAD_REQUEST);
         }
-        //int subscriptionId = Integer.parseInt(UUID.randomUUID().toString());
-        Random random = new Random();
-        int subscriptionId = random.nextInt(999999)+48646;
+        String subscriptionId = UUID.randomUUID().toString();
+        //Random random = new Random();
+        //int subscriptionId = random.nextInt(999999)+48646;
 
         RegisterSubscription registerSubscription = new RegisterSubscription(
                 subscriptionId,

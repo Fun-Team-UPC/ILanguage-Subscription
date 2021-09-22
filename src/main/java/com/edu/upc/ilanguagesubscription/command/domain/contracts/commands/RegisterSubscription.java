@@ -6,7 +6,7 @@ import org.axonframework.modelling.command.TargetAggregateIdentifier;
 @Value
 public class RegisterSubscription {
     @TargetAggregateIdentifier
-    int subscriptionId;
+    String subscriptionId;
     String name;
     int monthDuration;
     int price;
