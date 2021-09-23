@@ -10,24 +10,15 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "subscriptions")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class SubscriptionInfra {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
-
-
-    @NotNull
     public int price;
-
-    @NotNull
     public int monthDuration;
-
-    @NotNull
     @NotBlank(message ="Name is mandatory")
     public String name;
 
