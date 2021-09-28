@@ -1,8 +1,7 @@
 package com.edu.upc.ilanguagesubscription.command.api;
 
-import com.edu.upc.ilanguagesubscription.command.application.dto.RegisterSubscriptionErrorResponse;
-import com.edu.upc.ilanguagesubscription.command.application.dto.RegisterSubscriptionOkResponse;
-import com.edu.upc.ilanguagesubscription.command.application.dto.RegisterSubscriptionRequestDto;
+import com.edu.upc.ilanguagesubscription.command.application.dto.response.RegisterSubscriptionOkResponse;
+import com.edu.upc.ilanguagesubscription.command.application.dto.request.RegisterSubscriptionRequestDto;
 import com.edu.upc.ilanguagesubscription.command.domain.contracts.commands.RegisterSubscription;
 import com.edu.upc.ilanguagesubscription.command.infra.SubscriptionInfra;
 import com.edu.upc.ilanguagesubscription.command.infra.SubscriptionInfraRepository;
@@ -16,14 +15,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
-import java.util.Random;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
 @RestController
 @RequestMapping("/subscriptions")
-@Api(tags = "Customers")
+@Api(tags = "Subscriptions")
 public class SubscriptionCommandController {
     private final CommandGateway _commandGateway;
     private final SubscriptionInfraRepository _subscriptionRepository;
