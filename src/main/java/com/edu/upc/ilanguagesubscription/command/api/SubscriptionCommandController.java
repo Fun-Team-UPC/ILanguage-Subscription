@@ -36,10 +36,12 @@ public class SubscriptionCommandController {
 
     @PostMapping("")
     public ResponseEntity<Object> register(@RequestBody RegisterSubscriptionRequestDto registerSubscriptionRequestDto) {
+        var existingSubscriptionByName = _subscriptionRepository.findByName(registerSubscriptionRequestDto.getName());
         Optional<SubscriptionInfra> existingSubscriptionInfra = _subscriptionRepository.findByPrice(registerSubscriptionRequestDto.getPrice());
         if (existingSubscriptionInfra.isPresent()) {
             return new ResponseEntity(new RegisterSubscriptionErrorResponse(), HttpStatus.BAD_REQUEST);
         }
+
         String subscriptionId = UUID.randomUUID().toString();
         //Random random = new Random();
         //int subscriptionId = random.nextInt(999999)+48646;
@@ -55,8 +57,13 @@ public class SubscriptionCommandController {
             if (ex != null) {
                 return new RegisterSubscriptionErrorResponse();
             }
+            if(registerSubscriptionRequestDto.getPrice()==600){
+                return new RegisterSubscriptionErrorResponse();
+            }
             return new RegisterSubscriptionOkResponse(subscriptionId);
         });
+
+
 
         Object response = null;
         try {
