@@ -28,4 +28,3 @@ public class SubscriptionEventHandler {
         _subscriptionRepository.save(_subscriptionInfra);
     }
 }
--
