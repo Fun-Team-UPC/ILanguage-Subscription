@@ -1,12 +1,13 @@
 package com.edu.upc.ilanguagesubscription.command.application.dto.response;
 
-public class RegisterSubscriptionRes {
-    private String subscriptionId;
+import lombok.Value;
+import org.springframework.stereotype.Component;
 
-    public RegisterSubscriptionRes(String subscriptionId) {
-        this.subscriptionId = subscriptionId;
-    }
-    public String getSubscriptionId() {
-        return subscriptionId;
-    }
+@Value
+public class RegisterSubscriptionRes {
+    String subscriptionId;
+    String name;
+    int monthDuration;
+    int price;
+
 }

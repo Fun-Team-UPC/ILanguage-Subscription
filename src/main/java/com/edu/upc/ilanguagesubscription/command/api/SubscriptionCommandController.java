@@ -2,78 +2,54 @@ package com.edu.upc.ilanguagesubscription.command.api;
 
 import com.edu.upc.ilanguagesubscription.command.application.dto.response.RegisterSubscriptionRes;
 import com.edu.upc.ilanguagesubscription.command.application.dto.request.RegisterSubscriptionRequest;
+import com.edu.upc.ilanguagesubscription.command.application.services.SubscriptionApplicationService;
 import com.edu.upc.ilanguagesubscription.command.domain.contracts.commands.RegisterSubscription;
 import com.edu.upc.ilanguagesubscription.command.infra.SubscriptionInfra;
 import com.edu.upc.ilanguagesubscription.command.infra.SubscriptionInfraRepository;
+import com.edu.upc.ilanguagesubscription.common.api.ApiController;
+import com.edu.upc.ilanguagesubscription.common.application.Notification;
+import com.edu.upc.ilanguagesubscription.common.application.Result;
 import io.swagger.annotations.Api;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.Optional;
-import java.util.UUID;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
+/*import pe.com.ilanguage.common.application.Result;
+import pe.com.ilanguage.common.application.Notification;
+import pe.com.ilanguage.common.api.ApiController;
+import pe.com.ilanguage.common.application.Error;*/
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/subscriptions")
 @Api(tags = "Subscriptions")
 public class SubscriptionCommandController {
     private final CommandGateway _commandGateway;
-    private final SubscriptionInfraRepository _subscriptionRepository;
+    private final SubscriptionApplicationService _subscriotionService;
 
-
-    public SubscriptionCommandController(CommandGateway commandGateway, SubscriptionInfraRepository subscriptionRepository) {
-        _commandGateway = commandGateway;
-        _subscriptionRepository = subscriptionRepository;
+    public SubscriptionCommandController(CommandGateway _commandGateway, SubscriptionApplicationService _subscriotionService) {
+        this._commandGateway = _commandGateway;
+        this._subscriotionService = _subscriotionService;
     }
 
-    @PostMapping("")
+    @PostMapping(path= "", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> register(@RequestBody RegisterSubscriptionRequest registerSubscriptionRequestDto) {
-        var existingSubscriptionByName = _subscriptionRepository.findByName(registerSubscriptionRequestDto.getName());
-        Optional<SubscriptionInfra> existingSubscriptionInfra = _subscriptionRepository.findByPrice(registerSubscriptionRequestDto.getPrice());
-        if (existingSubscriptionInfra.isPresent()) {
-            return new ResponseEntity(new RegisterSubscriptionErrorResponse(), HttpStatus.BAD_REQUEST);
-        }
-
-        String subscriptionId = UUID.randomUUID().toString();
-        //Random random = new Random();
-        //int subscriptionId = random.nextInt(999999)+48646;
-
-        RegisterSubscription registerSubscription = new RegisterSubscription(
-                subscriptionId,
-                registerSubscriptionRequestDto.getName(),
-                registerSubscriptionRequestDto.getMonthDuration(),
-                registerSubscriptionRequestDto.getPrice()
-        );
-        CompletableFuture<Object> future = _commandGateway.send(registerSubscription);
-        CompletableFuture<Object> futureResponse = future.handle((ok, ex) -> {
-            if (ex != null) {
-                return new RegisterSubscriptionErrorResponse();
-            }
-            if(registerSubscriptionRequestDto.getPrice()==600){
-                return new RegisterSubscriptionErrorResponse();
-            }
-            return new RegisterSubscriptionRes(subscriptionId);
-        });
-
-
-
-        Object response = null;
+        List<Error> errors = new ArrayList<>();
         try {
-            response = futureResponse.get();
-            if (response instanceof RegisterSubscriptionRes) {
-                return new ResponseEntity(response, HttpStatus.CREATED);
+            Result<RegisterSubscriptionRes, Notification> result = _subscriotionService.register(registerSubscriptionRequestDto);
+            if(result.isSuccess()) {
+                return ApiController.created(result.getSuccess());
             }
-            return new ResponseEntity(response, HttpStatus.BAD_REQUEST);
-        } catch (InterruptedException | ExecutionException e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-
+            //TODO: this return is not ok
+            return ApiController.serverError();
+        } catch (Exception e) {
+            return ApiController.serverError();
         }
-
     }
 }

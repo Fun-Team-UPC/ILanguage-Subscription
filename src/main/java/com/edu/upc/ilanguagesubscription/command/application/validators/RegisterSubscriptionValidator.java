@@ -3,9 +3,9 @@ package com.edu.upc.ilanguagesubscription.command.application.validators;
 import com.edu.upc.ilanguagesubscription.command.application.dto.request.RegisterSubscriptionRequest;
 import com.edu.upc.ilanguagesubscription.command.infra.SubscriptionInfra;
 import com.edu.upc.ilanguagesubscription.command.infra.SubscriptionInfraRepository;
+import com.edu.upc.ilanguagesubscription.common.application.Notification;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
-import pe.com.ilanguage.common.application.Notification;
 
 import java.util.Optional;
 
