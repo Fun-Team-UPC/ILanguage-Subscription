@@ -4,6 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.EntityManager;
 import java.util.Optional;
 
 
@@ -18,5 +19,10 @@ public interface SubscriptionInfraRepository extends JpaRepository<SubscriptionI
 
     @Query("SELECT s FROM SubscriptionInfra s WHERE s.monthDuration = ?1")
     public Optional<SubscriptionInfra>findByMonthDuration(int monthDuration);
+
+
+
+
+
 
 }
