@@ -1,6 +1,6 @@
 package com.edu.upc.ilanguagesubscription.command.application.validators;
 
-import com.edu.upc.ilanguagesubscription.command.application.dto.request.RegisterSubscriptionRequestDto;
+import com.edu.upc.ilanguagesubscription.command.application.dto.request.RegisterSubscriptionRequest;
 import com.edu.upc.ilanguagesubscription.command.infra.SubscriptionInfra;
 import com.edu.upc.ilanguagesubscription.command.infra.SubscriptionInfraRepository;
 import lombok.AllArgsConstructor;
@@ -14,7 +14,7 @@ import java.util.Optional;
 public class RegisterSubscriptionValidator {
     private final SubscriptionInfraRepository _subscriptionRepository;
 
-    public Notification validate(RegisterSubscriptionRequestDto registerSubscriptionRequestDto){
+    public Notification validate(RegisterSubscriptionRequest registerSubscriptionRequestDto){
         Notification notification = new Notification();
         String name = registerSubscriptionRequestDto.getName();
         int monthDuration = registerSubscriptionRequestDto.getMonthDuration();

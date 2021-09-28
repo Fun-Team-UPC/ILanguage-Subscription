@@ -1,7 +1,7 @@
 package com.edu.upc.ilanguagesubscription.command.api;
 
-import com.edu.upc.ilanguagesubscription.command.application.dto.response.RegisterSubscriptionOkResponse;
-import com.edu.upc.ilanguagesubscription.command.application.dto.request.RegisterSubscriptionRequestDto;
+import com.edu.upc.ilanguagesubscription.command.application.dto.response.RegisterSubscriptionRes;
+import com.edu.upc.ilanguagesubscription.command.application.dto.request.RegisterSubscriptionRequest;
 import com.edu.upc.ilanguagesubscription.command.domain.contracts.commands.RegisterSubscription;
 import com.edu.upc.ilanguagesubscription.command.infra.SubscriptionInfra;
 import com.edu.upc.ilanguagesubscription.command.infra.SubscriptionInfraRepository;
@@ -33,7 +33,7 @@ public class SubscriptionCommandController {
     }
 
     @PostMapping("")
-    public ResponseEntity<Object> register(@RequestBody RegisterSubscriptionRequestDto registerSubscriptionRequestDto) {
+    public ResponseEntity<Object> register(@RequestBody RegisterSubscriptionRequest registerSubscriptionRequestDto) {
         var existingSubscriptionByName = _subscriptionRepository.findByName(registerSubscriptionRequestDto.getName());
         Optional<SubscriptionInfra> existingSubscriptionInfra = _subscriptionRepository.findByPrice(registerSubscriptionRequestDto.getPrice());
         if (existingSubscriptionInfra.isPresent()) {
@@ -58,7 +58,7 @@ public class SubscriptionCommandController {
             if(registerSubscriptionRequestDto.getPrice()==600){
                 return new RegisterSubscriptionErrorResponse();
             }
-            return new RegisterSubscriptionOkResponse(subscriptionId);
+            return new RegisterSubscriptionRes(subscriptionId);
         });
 
 
@@ -66,7 +66,7 @@ public class SubscriptionCommandController {
         Object response = null;
         try {
             response = futureResponse.get();
-            if (response instanceof RegisterSubscriptionOkResponse) {
+            if (response instanceof RegisterSubscriptionRes) {
                 return new ResponseEntity(response, HttpStatus.CREATED);
             }
             return new ResponseEntity(response, HttpStatus.BAD_REQUEST);
