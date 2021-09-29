@@ -20,6 +20,8 @@ public interface SubscriptionInfraRepository extends JpaRepository<SubscriptionI
     @Query("SELECT s FROM SubscriptionInfra s WHERE s.monthDuration = ?1")
     public Optional<SubscriptionInfra>findByMonthDuration(int monthDuration);
 
+    @Query("SELECT s FROM SubscriptionInfra s WHERE s.id = ?1")
+    public Optional<SubscriptionInfra>findSubscriptionBySubscriptionId(String subscriptionId);
 
 
 
