@@ -1,5 +1,7 @@
 package com.edu.upc.ilanguagesubscription.command.api;
 
+import com.edu.upc.ilanguagesubscription.command.application.dto.request.EditSubscriptionRequestDto;
+import com.edu.upc.ilanguagesubscription.command.application.dto.response.EditSubscriptionOkResponse;
 import com.edu.upc.ilanguagesubscription.command.application.dto.response.RegisterSubscriptionRes;
 import com.edu.upc.ilanguagesubscription.command.application.dto.request.RegisterSubscriptionRequest;
 import com.edu.upc.ilanguagesubscription.command.application.services.SubscriptionApplicationService;
@@ -11,13 +13,11 @@ import com.edu.upc.ilanguagesubscription.common.application.Notification;
 import com.edu.upc.ilanguagesubscription.common.application.Result;
 import io.swagger.annotations.Api;
 import org.axonframework.commandhandling.gateway.CommandGateway;
+import org.axonframework.modelling.command.AggregateNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 /*import pe.com.ilanguage.common.application.Result;
 import pe.com.ilanguage.common.application.Notification;
 import pe.com.ilanguage.common.api.ApiController;
@@ -51,5 +51,22 @@ public class SubscriptionCommandController {
         } catch (Exception e) {
             return ApiController.serverError();
         }
+    }
+
+    @PutMapping("/{subscriptionId}")
+    public ResponseEntity<Object>edit(@PathVariable("subscriptionId") String subscriptionId, @RequestBody EditSubscriptionRequestDto editSubscriptionRequestDto){
+        try {
+            editSubscriptionRequestDto.setSubscriptionId(subscriptionId);
+            Result<EditSubscriptionOkResponse, Notification> result = _subscriotionService.edit(editSubscriptionRequestDto);
+            if(result.isSuccess()){
+                return ApiController.ok(result.getSuccess());
+            }
+            return ApiController.notFound();
+        } catch (AggregateNotFoundException exception){
+            return ApiController.notFound();
+        } catch (Exception e) {
+            return ApiController.serverError();
+        }
+
     }
 }

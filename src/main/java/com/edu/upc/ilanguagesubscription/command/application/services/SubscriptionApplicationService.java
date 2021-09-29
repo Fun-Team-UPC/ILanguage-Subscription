@@ -1,13 +1,18 @@
 package com.edu.upc.ilanguagesubscription.command.application.services;
 
+import com.edu.upc.ilanguagesubscription.command.application.dto.request.EditSubscriptionRequestDto;
 import com.edu.upc.ilanguagesubscription.command.application.dto.request.RegisterSubscriptionRequest;
+import com.edu.upc.ilanguagesubscription.command.application.dto.response.EditSubscriptionOkResponse;
 import com.edu.upc.ilanguagesubscription.command.application.dto.response.RegisterSubscriptionRes;
+import com.edu.upc.ilanguagesubscription.command.application.validators.EditSubscriptionValidator;
 import com.edu.upc.ilanguagesubscription.command.application.validators.RegisterSubscriptionValidator;
+import com.edu.upc.ilanguagesubscription.command.domain.contracts.commands.EditSubscription;
 import com.edu.upc.ilanguagesubscription.command.domain.contracts.commands.RegisterSubscription;
 import com.edu.upc.ilanguagesubscription.command.infra.SubscriptionInfraRepository;
 import com.edu.upc.ilanguagesubscription.common.application.Notification;
 import com.edu.upc.ilanguagesubscription.common.application.Result;
 import com.edu.upc.ilanguagesubscription.common.application.ResultType;
+import com.sun.nio.sctp.NotificationHandler;
 import lombok.AllArgsConstructor;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.stereotype.Component;
@@ -20,6 +25,7 @@ public class SubscriptionApplicationService {
     private final RegisterSubscriptionValidator _registrationValidator;
     private final CommandGateway _commandGateway;
     private final SubscriptionInfraRepository _subscriptionRepository;
+    private final EditSubscriptionValidator _editValidator;
 
     public Result<RegisterSubscriptionRes, Notification> register(RegisterSubscriptionRequest registerSubscriptionRequest) throws Exception{
         Notification notification = this._registrationValidator.validate(registerSubscriptionRequest);
@@ -48,5 +54,33 @@ public class SubscriptionApplicationService {
                 registerSubscription.getPrice()
         );
         return Result.success(registerSubsciptionResponseDto);
+    }
+
+    public Result<EditSubscriptionOkResponse, Notification> edit(EditSubscriptionRequestDto editSubscriptionRequestDto) throws Exception{
+        Notification notification = this._editValidator.validate(editSubscriptionRequestDto);
+        if(notification.hasErrors()){
+            return Result.failure(notification);
+        }
+        EditSubscription editSubscription = new EditSubscription(
+                editSubscriptionRequestDto.getSubgetSubscriptionId(),
+                editSubscriptionRequestDto.getName(),
+                editSubscriptionRequestDto.getMonthDuration(),
+                editSubscriptionRequestDto.getPrice()
+        );
+
+        CompletableFuture<Object> future = _commandGateway.send(editSubscription);
+        CompletableFuture<ResultType> futureResult = future.handle((ok,ex) -> (ex != null) ? ResultType.FAILURE :  ResultType.SUCCESS);
+
+        ResultType resultType = futureResult.get();
+        if(resultType == ResultType.FAILURE){
+            throw new Exception();
+        }
+        EditSubscriptionOkResponse editSubscriptionOkResponse = new EditSubscriptionOkResponse(
+                editSubscription.getSubscriptionId(),
+                editSubscription.getName(),
+                editSubscription.getMonthDuration(),
+                editSubscription.getPrice()
+        );
+        return Result.success(editSubscriptionOkResponse);
     }
 }
