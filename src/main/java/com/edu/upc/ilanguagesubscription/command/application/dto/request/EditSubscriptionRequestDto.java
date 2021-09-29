@@ -10,7 +10,7 @@ public class EditSubscriptionRequestDto {
         return name;
     }
 
-    public float getPrice() {
+    public int getPrice() {
         return price;
     }
 
