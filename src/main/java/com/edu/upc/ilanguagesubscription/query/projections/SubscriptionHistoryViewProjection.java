@@ -1,5 +1,6 @@
 package com.edu.upc.ilanguagesubscription.query.projections;
 
+import com.edu.upc.ilanguagesubscription.command.domain.contracts.events.SubscriptionEdited;
 import com.edu.upc.ilanguagesubscription.command.domain.contracts.events.SubscriptionRegistered;
 import org.axonframework.eventhandling.EventHandler;
 import org.axonframework.eventhandling.Timestamp;
@@ -25,5 +26,15 @@ public class SubscriptionHistoryViewProjection {
                 event.getName(),
                 event.getOccurredOn());
         _subscriptionRepository.save(subscriptionView);
+    }
+
+    @EventHandler
+    public void on(SubscriptionEdited event, @Timestamp Instant timestamp) {
+        SubscriptionHistoryView subscriptionHistoryView = new SubscriptionHistoryView(event.getSubscriptionId(),
+                event.getPrice(),
+                event.getMonthDuration(),
+                event.getName(),
+                event.getOccurredOn());
+        _subscriptionRepository.save(subscriptionHistoryView);
     }
 }
