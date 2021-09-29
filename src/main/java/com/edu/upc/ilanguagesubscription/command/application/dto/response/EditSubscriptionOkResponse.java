@@ -1,13 +1,11 @@
 package com.edu.upc.ilanguagesubscription.command.application.dto.response;
 
+import lombok.Value;
+
+@Value
 public class EditSubscriptionOkResponse {
-    private String subscriptionId;
-
-    public EditSubscriptionOkResponse(String subscriptionId) {
-        this.subscriptionId = subscriptionId;
-    }
-
-    public String getSubscriptionId() {
-        return subscriptionId;
-    }
+    String subscriptionId;
+    String name;
+    int monthDuration;
+    int price;
 }
