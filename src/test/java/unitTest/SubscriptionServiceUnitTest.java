@@ -43,6 +43,6 @@ public class SubscriptionServiceUnitTest {
         subscription.setId("HDUD5FSDFDSFGJ");
         when(_subscriptionRespository.findByName(name)).thenReturn(Optional.of(subscription));
         Optional<SubscriptionInfra> foundSubscription = _subscriptionRespository.findByName(name);
-        assertThat(foundSubscription.isPresent());
+        assertThat(foundSubscription.get().getName()).isEqualTo(subscription.getName());
     }
 }
