@@ -1,6 +1,6 @@
 package com.edu.upc.ilanguagesubscription.query.projections;
 
-import com.edu.upc.ilanguagesubscription.command.domain.contracts.events.SubscriptionRegistered;
+import contracts.events.SubscriptionRegistered;
 import org.axonframework.eventhandling.EventHandler;
 import org.axonframework.eventhandling.Timestamp;
 import org.springframework.stereotype.Component;

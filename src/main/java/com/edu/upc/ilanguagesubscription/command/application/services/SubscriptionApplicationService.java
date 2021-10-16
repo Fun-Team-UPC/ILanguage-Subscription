@@ -6,16 +6,15 @@ import com.edu.upc.ilanguagesubscription.command.application.dto.response.EditSu
 import com.edu.upc.ilanguagesubscription.command.application.dto.response.RegisterSubscriptionRes;
 import com.edu.upc.ilanguagesubscription.command.application.validators.EditSubscriptionValidator;
 import com.edu.upc.ilanguagesubscription.command.application.validators.RegisterSubscriptionValidator;
-import com.edu.upc.ilanguagesubscription.command.domain.contracts.commands.EditSubscription;
-import com.edu.upc.ilanguagesubscription.command.domain.contracts.commands.RegisterSubscription;
 import com.edu.upc.ilanguagesubscription.command.infra.SubscriptionInfraRepository;
-import com.edu.upc.ilanguagesubscription.common.application.Notification;
-import com.edu.upc.ilanguagesubscription.common.application.Result;
-import com.edu.upc.ilanguagesubscription.common.application.ResultType;
-import com.sun.nio.sctp.NotificationHandler;
+import contracts.commands.EditSubscription;
+import contracts.commands.RegisterSubscription;
 import lombok.AllArgsConstructor;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.stereotype.Component;
+import pe.com.ilanguage.common.application.Notification;
+import pe.com.ilanguage.common.application.Result;
+import pe.com.ilanguage.common.application.ResultType;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 

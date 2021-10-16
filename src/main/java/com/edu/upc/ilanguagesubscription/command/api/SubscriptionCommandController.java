@@ -5,24 +5,16 @@ import com.edu.upc.ilanguagesubscription.command.application.dto.response.EditSu
 import com.edu.upc.ilanguagesubscription.command.application.dto.response.RegisterSubscriptionRes;
 import com.edu.upc.ilanguagesubscription.command.application.dto.request.RegisterSubscriptionRequest;
 import com.edu.upc.ilanguagesubscription.command.application.services.SubscriptionApplicationService;
-import com.edu.upc.ilanguagesubscription.command.domain.contracts.commands.RegisterSubscription;
-import com.edu.upc.ilanguagesubscription.command.infra.SubscriptionInfra;
-import com.edu.upc.ilanguagesubscription.command.infra.SubscriptionInfraRepository;
-import com.edu.upc.ilanguagesubscription.common.api.ApiController;
-import com.edu.upc.ilanguagesubscription.common.application.Notification;
-import com.edu.upc.ilanguagesubscription.common.application.Result;
 import io.swagger.annotations.Api;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.axonframework.modelling.command.AggregateNotFoundException;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-/*import pe.com.ilanguage.common.application.Result;
-import pe.com.ilanguage.common.application.Notification;
 import pe.com.ilanguage.common.api.ApiController;
-import pe.com.ilanguage.common.application.Error;*/
-import java.awt.*;
+import pe.com.ilanguage.common.application.Error;
+import pe.com.ilanguage.common.application.Notification;
+import pe.com.ilanguage.common.application.*;
 import java.util.ArrayList;
 import java.util.List;
 

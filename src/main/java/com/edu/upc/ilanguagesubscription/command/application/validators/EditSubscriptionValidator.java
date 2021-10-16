@@ -4,13 +4,13 @@ import com.edu.upc.ilanguagesubscription.command.application.dto.request.EditSub
 import com.edu.upc.ilanguagesubscription.command.domain.Subscription;
 import com.edu.upc.ilanguagesubscription.command.infra.SubscriptionInfra;
 import com.edu.upc.ilanguagesubscription.command.infra.SubscriptionInfraRepository;
-import com.edu.upc.ilanguagesubscription.common.application.Notification;
 import lombok.AllArgsConstructor;
 import org.axonframework.messaging.unitofwork.DefaultUnitOfWork;
 import org.axonframework.messaging.unitofwork.UnitOfWork;
 import org.axonframework.modelling.command.AggregateNotFoundException;
 import org.axonframework.modelling.command.Repository;
 import org.springframework.stereotype.Component;
+import pe.com.ilanguage.common.application.Notification;
 
 import java.util.Optional;
 

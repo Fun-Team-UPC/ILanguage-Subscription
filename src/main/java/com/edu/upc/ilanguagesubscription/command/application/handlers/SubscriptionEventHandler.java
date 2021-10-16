@@ -1,10 +1,11 @@
 package com.edu.upc.ilanguagesubscription.command.application.handlers;
 
 
-import com.edu.upc.ilanguagesubscription.command.domain.contracts.events.SubscriptionEdited;
-import com.edu.upc.ilanguagesubscription.command.domain.contracts.events.SubscriptionRegistered;
+
 import com.edu.upc.ilanguagesubscription.command.infra.SubscriptionInfra;
 import com.edu.upc.ilanguagesubscription.command.infra.SubscriptionInfraRepository;
+import contracts.events.SubscriptionEdited;
+import contracts.events.SubscriptionRegistered;
 import org.axonframework.config.ProcessingGroup;
 import org.axonframework.eventhandling.EventHandler;
 import org.springframework.stereotype.Component;

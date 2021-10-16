@@ -1,10 +1,11 @@
 package com.edu.upc.ilanguagesubscription.command.domain;
 import static org.axonframework.modelling.command.AggregateLifecycle.apply;
 
-import com.edu.upc.ilanguagesubscription.command.domain.contracts.commands.EditSubscription;
-import com.edu.upc.ilanguagesubscription.command.domain.contracts.commands.RegisterSubscription;
-import com.edu.upc.ilanguagesubscription.command.domain.contracts.events.SubscriptionEdited;
-import com.edu.upc.ilanguagesubscription.command.domain.contracts.events.SubscriptionRegistered;
+
+import contracts.commands.EditSubscription;
+import contracts.commands.RegisterSubscription;
+import contracts.events.SubscriptionEdited;
+import contracts.events.SubscriptionRegistered;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.modelling.command.AggregateIdentifier;
