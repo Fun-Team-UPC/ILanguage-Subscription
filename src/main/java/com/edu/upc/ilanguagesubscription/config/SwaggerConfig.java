@@ -4,16 +4,11 @@ import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import springfox.documentation.builders.RequestHandlerSelectors;
-import springfox.documentation.service.Tag;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import springfox.documentation.spi.DocumentationType;
-import springfox.documentation.spring.web.plugins.Docket;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
 
 @Configuration
-@EnableSwagger2
 @EnableWebMvc
 public class SwaggerConfig {
    /* @Bean
@@ -26,13 +21,13 @@ public class SwaggerConfig {
                 .build();
     }*/
 
-    @Bean(name ="iLanguageOpenApi")
+    @Bean(name ="SubscriptionIlanguageOPEN-API")
     public OpenAPI iLanguageOpenApi(){
         return new OpenAPI()
                 .components(new Components())
                 .info(new Info()
-                        .title("Ilanguage Aplication api")
-                        .description("ILanguage API implemmented with Spring Boot RESTful service and docummented using springdoc-openapi-ui 3.0"));
+                        .title("Subscription Aplication A P I")
+                        .description("Subscription microservice for Ilanguage Application implemmented with Spring Boot RESTful service and docummented using springdoc-openapi-ui 3.0"));
 
     }
 }

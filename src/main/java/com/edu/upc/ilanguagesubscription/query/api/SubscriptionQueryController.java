@@ -5,7 +5,6 @@ import com.edu.upc.ilanguagesubscription.query.projections.SubscriptionHistoryVi
 import com.edu.upc.ilanguagesubscription.query.projections.SubscriptionHistoryViewRepository;
 import com.edu.upc.ilanguagesubscription.query.projections.SubscriptionView;
 import com.edu.upc.ilanguagesubscription.query.projections.SubscriptionViewRepository;
-import io.swagger.annotations.Api;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -19,7 +18,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/subscriptions")
-@Api(tags = "Subscriptions")
+
 public class SubscriptionQueryController {
 
     private final SubscriptionViewRepository _subscriptionRepository;

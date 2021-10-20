@@ -5,7 +5,6 @@ import com.edu.upc.ilanguagesubscription.command.application.dto.response.EditSu
 import com.edu.upc.ilanguagesubscription.command.application.dto.response.RegisterSubscriptionRes;
 import com.edu.upc.ilanguagesubscription.command.application.dto.request.RegisterSubscriptionRequest;
 import com.edu.upc.ilanguagesubscription.command.application.services.SubscriptionApplicationService;
-import io.swagger.annotations.Api;
 import io.swagger.v3.oas.annotations.Operation;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.axonframework.modelling.command.AggregateNotFoundException;
@@ -21,7 +20,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/subscriptions")
-@Api(tags = "Subscriptions")
+
 public class SubscriptionCommandController {
     private final CommandGateway _commandGateway;
     private final SubscriptionApplicationService _subscriotionService;
