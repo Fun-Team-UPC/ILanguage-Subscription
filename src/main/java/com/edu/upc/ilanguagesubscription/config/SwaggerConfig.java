@@ -3,6 +3,7 @@ package com.edu.upc.ilanguagesubscription.config;
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.Tag;
 import org.springframework.context.annotation.Bean;
@@ -13,6 +14,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Configuration
 @EnableSwagger2
+@EnableWebMvc
 public class SwaggerConfig {
    /* @Bean
     public Docket api() {

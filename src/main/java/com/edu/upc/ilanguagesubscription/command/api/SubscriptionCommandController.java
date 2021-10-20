@@ -31,7 +31,7 @@ public class SubscriptionCommandController {
         this._subscriotionService = _subscriotionService;
     }
 
-    @Operation(summary="Save subscription", description="Save suscription", tags = {"subscriptions"} )
+    @Operation(summary="Save subscription", description="This endpoint is for saving a new subscription for Ilanguage Application", tags = {"subscriptions"} )
     @PostMapping(path= "", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> register(@RequestBody RegisterSubscriptionRequest registerSubscriptionRequestDto) {
         List<Error> errors = new ArrayList<>();
@@ -47,7 +47,7 @@ public class SubscriptionCommandController {
         }
     }
 
-    @Operation(summary="Edit subscription", description="Edit suscription", tags = {"subscriptions"} )
+    @Operation(summary="Edit subscription", description="This endpoind is for editing an existing subscription in Ilanguage Application", tags = {"subscriptions"} )
     @PutMapping("/{subscriptionId}")
     public ResponseEntity<Object>edit(@PathVariable("subscriptionId") String subscriptionId, @RequestBody EditSubscriptionRequestDto editSubscriptionRequestDto){
         try {
