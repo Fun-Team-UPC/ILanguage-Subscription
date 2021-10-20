@@ -1,6 +1,8 @@
 package com.edu.upc.ilanguagesubscription.config;
 
-import springfox.documentation.builders.PathSelectors;
+import io.swagger.v3.oas.models.Components;
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Info;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.Tag;
 import org.springframework.context.annotation.Bean;
@@ -12,7 +14,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {
-    @Bean
+   /* @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .tags(new Tag("Subcriptions", "Subcriptions"))
@@ -20,5 +22,15 @@ public class SwaggerConfig {
                 .apis(RequestHandlerSelectors.any())
                 .paths(PathSelectors.any())
                 .build();
+    }*/
+
+    @Bean(name ="iLanguageOpenApi")
+    public OpenAPI iLanguageOpenApi(){
+        return new OpenAPI()
+                .components(new Components())
+                .info(new Info()
+                        .title("Ilanguage Aplication api")
+                        .description("ILanguage API implemmented with Spring Boot RESTful service and docummented using springdoc-openapi-ui 3.0"));
+
     }
 }

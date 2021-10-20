@@ -4,6 +4,7 @@ package com.edu.upc.ilanguagesubscription.query.api;
 import com.edu.upc.ilanguagesubscription.query.projections.SubscriptionView;
 import com.edu.upc.ilanguagesubscription.query.projections.SubscriptionViewRepository;
 import io.swagger.annotations.Api;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +24,7 @@ public class SubscriptionQueryController {
         this._subscriptionRepository = _subscriptionRepository;
     }
 
+    @Operation(summary="Get subscription", description="Get suscription", tags = {"subscriptions"} )
     @GetMapping("")
     public ResponseEntity<List<SubscriptionView>> getAll(){
         try {

@@ -6,6 +6,7 @@ import com.edu.upc.ilanguagesubscription.command.application.dto.response.Regist
 import com.edu.upc.ilanguagesubscription.command.application.dto.request.RegisterSubscriptionRequest;
 import com.edu.upc.ilanguagesubscription.command.application.services.SubscriptionApplicationService;
 import io.swagger.annotations.Api;
+import io.swagger.v3.oas.annotations.Operation;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.axonframework.modelling.command.AggregateNotFoundException;
 import org.springframework.http.MediaType;
@@ -30,6 +31,7 @@ public class SubscriptionCommandController {
         this._subscriotionService = _subscriotionService;
     }
 
+    @Operation(summary="Save subscription", description="Save suscription", tags = {"subscriptions"} )
     @PostMapping(path= "", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> register(@RequestBody RegisterSubscriptionRequest registerSubscriptionRequestDto) {
         List<Error> errors = new ArrayList<>();
@@ -45,6 +47,7 @@ public class SubscriptionCommandController {
         }
     }
 
+    @Operation(summary="Edit subscription", description="Edit suscription", tags = {"subscriptions"} )
     @PutMapping("/{subscriptionId}")
     public ResponseEntity<Object>edit(@PathVariable("subscriptionId") String subscriptionId, @RequestBody EditSubscriptionRequestDto editSubscriptionRequestDto){
         try {
