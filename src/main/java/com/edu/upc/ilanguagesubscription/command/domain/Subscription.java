@@ -6,6 +6,8 @@ import contracts.commands.EditSubscription;
 import contracts.commands.RegisterSubscription;
 import contracts.events.SubscriptionEdited;
 import contracts.events.SubscriptionRegistered;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.modelling.command.AggregateIdentifier;
@@ -14,6 +16,7 @@ import org.axonframework.spring.stereotype.Aggregate;
 import java.time.Instant;
 
 @Aggregate
+@Getter
 public class Subscription {
     @AggregateIdentifier
     private String subscriptionId;
@@ -39,7 +42,7 @@ public class Subscription {
     }
 
     @CommandHandler
-    public void handle (EditSubscription command) {
+    public void handle (RegisterSubscription command) {
         Instant now = Instant.now();
         apply(
                 new SubscriptionEdited(
