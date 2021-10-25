@@ -1,6 +1,15 @@
 package cucumber.stepDefs;
 
+import cucumber.stepDefs.selenium.SeleniumWebDriverConfig;
+
 public class MyStepdefs {
+
+    SeleniumWebDriverConfig myDriver;
+
+    public MyStepdefs() {
+        myDriver = new SeleniumWebDriverConfig();
+    }
+
     @io.cucumber.java.en.Given("the client is on the main page")
     public void theClientIsOnTheMainPage() {
     }

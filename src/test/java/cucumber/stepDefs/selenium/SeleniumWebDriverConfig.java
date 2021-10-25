@@ -15,4 +15,9 @@ public class SeleniumWebDriverConfig {
         driver.get(API_URL);
         driver.manage().window().fullscreen();
     }
+
+
+    public void closeWindow(){
+        driver.quit();
+    }
 }
