@@ -1,3 +1,5 @@
+package cucumber.stepDefs;
+
 public class MyStepdefs {
     @io.cucumber.java.en.Given("the client is on the main page")
     public void theClientIsOnTheMainPage() {
