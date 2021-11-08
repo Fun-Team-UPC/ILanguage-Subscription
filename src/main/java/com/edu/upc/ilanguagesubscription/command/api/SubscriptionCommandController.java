@@ -8,6 +8,7 @@ import com.edu.upc.ilanguagesubscription.command.application.services.Subscripti
 import io.swagger.v3.oas.annotations.Operation;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.axonframework.modelling.command.AggregateNotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +23,8 @@ import java.util.List;
 @RequestMapping("/subscriptions")
 
 public class SubscriptionCommandController {
-    private final CommandGateway _commandGateway;
+
+    private final  CommandGateway _commandGateway;
     private final SubscriptionApplicationService _subscriotionService;
 
     public SubscriptionCommandController(CommandGateway _commandGateway, SubscriptionApplicationService _subscriotionService) {
