@@ -5,7 +5,6 @@ import contracts.events.SubscriptionRegistered;
 import org.axonframework.eventhandling.EventHandler;
 import org.axonframework.eventhandling.Timestamp;
 import org.springframework.stereotype.Component;
-
 import java.time.Instant;
 
 @Component
