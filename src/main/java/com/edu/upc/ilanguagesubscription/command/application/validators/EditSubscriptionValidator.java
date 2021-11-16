@@ -10,7 +10,7 @@ import org.axonframework.messaging.unitofwork.UnitOfWork;
 import org.axonframework.modelling.command.AggregateNotFoundException;
 import org.axonframework.modelling.command.Repository;
 import org.springframework.stereotype.Component;
-import pe.com.ilanguage.common.application.Notification;
+import pe.edu.upc.banking.common.application.Notification;
 
 import java.util.Optional;
 
@@ -28,7 +28,7 @@ public class EditSubscriptionValidator {
 
         //First of all, id should be valid
         Optional<SubscriptionInfra> existingSubscription = _subscriptionRepository.findSubscriptionBySubscriptionId(editSubscriptionRequestDto.getSubgetSubscriptionId());
-        if(existingSubscription.isEmpty()){
+        if(!existingSubscription.isPresent()){
             notification.addError("Subscription with id" + editSubscriptionRequestDto.getSubgetSubscriptionId() + " does not exists");
             return notification;
         }

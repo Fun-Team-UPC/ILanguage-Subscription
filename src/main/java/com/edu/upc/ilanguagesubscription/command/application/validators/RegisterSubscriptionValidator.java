@@ -5,7 +5,7 @@ import com.edu.upc.ilanguagesubscription.command.infra.SubscriptionInfra;
 import com.edu.upc.ilanguagesubscription.command.infra.SubscriptionInfraRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
-import pe.com.ilanguage.common.application.Notification;
+import pe.edu.upc.banking.common.application.Notification;
 
 import java.util.Optional;
 

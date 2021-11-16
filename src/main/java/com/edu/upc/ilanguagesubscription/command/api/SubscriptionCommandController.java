@@ -2,20 +2,20 @@ package com.edu.upc.ilanguagesubscription.command.api;
 
 import com.edu.upc.ilanguagesubscription.command.application.dto.request.EditSubscriptionRequestDto;
 import com.edu.upc.ilanguagesubscription.command.application.dto.response.EditSubscriptionOkResponse;
-import com.edu.upc.ilanguagesubscription.command.application.dto.response.RegisterSubscriptionRes;
 import com.edu.upc.ilanguagesubscription.command.application.dto.request.RegisterSubscriptionRequest;
+import com.edu.upc.ilanguagesubscription.command.application.dto.response.RegisterSubscriptionRes;
 import com.edu.upc.ilanguagesubscription.command.application.services.SubscriptionApplicationService;
+
 import io.swagger.v3.oas.annotations.Operation;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.axonframework.modelling.command.AggregateNotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pe.com.ilanguage.common.api.ApiController;
-import pe.com.ilanguage.common.application.Error;
-import pe.com.ilanguage.common.application.Notification;
-import pe.com.ilanguage.common.application.*;
+import pe.edu.upc.banking.common.api.ApiController;
+import pe.edu.upc.banking.common.application.Notification;
+import pe.edu.upc.banking.common.application.Result;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +37,7 @@ public class SubscriptionCommandController {
     public ResponseEntity<Object> register(@RequestBody RegisterSubscriptionRequest registerSubscriptionRequestDto) {
         List<Error> errors = new ArrayList<>();
         try {
-            Result<RegisterSubscriptionRes, Notification> result = _subscriotionService.register(registerSubscriptionRequestDto);
+            Result<RegisterSubscriptionRes, Object> result = _subscriotionService.register(registerSubscriptionRequestDto);
             if(result.isSuccess()) {
                 return ApiController.created(result.getSuccess());
             }

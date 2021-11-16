@@ -12,9 +12,10 @@ import contracts.commands.RegisterSubscription;
 import lombok.AllArgsConstructor;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.stereotype.Component;
-import pe.com.ilanguage.common.application.Notification;
-import pe.com.ilanguage.common.application.Result;
-import pe.com.ilanguage.common.application.ResultType;
+import pe.edu.upc.banking.common.application.Notification;
+import pe.edu.upc.banking.common.application.Result;
+import pe.edu.upc.banking.common.application.ResultType;
+
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
@@ -26,7 +27,7 @@ public class SubscriptionApplicationService {
     private final SubscriptionInfraRepository _subscriptionRepository;
     private final EditSubscriptionValidator _editValidator;
 
-    public Result<RegisterSubscriptionRes, Notification> register(RegisterSubscriptionRequest registerSubscriptionRequest) throws Exception{
+    public Result<RegisterSubscriptionRes, Object> register(RegisterSubscriptionRequest registerSubscriptionRequest) throws Exception{
         Notification notification = this._registrationValidator.validate(registerSubscriptionRequest);
         if(notification.hasErrors()){
             return Result.failure(notification);
@@ -68,7 +69,7 @@ public class SubscriptionApplicationService {
         );
 
         CompletableFuture<Object> future = _commandGateway.send(editSubscription);
-        CompletableFuture<ResultType> futureResult = future.handle((ok,ex) -> (ex != null) ? ResultType.FAILURE :  ResultType.SUCCESS);
+        CompletableFuture<ResultType> futureResult = future.handle((ok, ex) -> (ex != null) ? ResultType.FAILURE :  ResultType.SUCCESS);
 
         ResultType resultType = futureResult.get();
         if(resultType == ResultType.FAILURE){

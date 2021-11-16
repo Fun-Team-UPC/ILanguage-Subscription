@@ -1,6 +1,6 @@
 services:
   banking:
-    image: ilanguage-subscription-fas
+    image: ilanguage-microservice-fas-subscription
     build:
       context: .
       dockerfile: Dockerfile
