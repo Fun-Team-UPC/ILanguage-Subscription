@@ -16,6 +16,7 @@ import pe.edu.upc.banking.common.application.Notification;
 import pe.edu.upc.banking.common.application.Result;
 import pe.edu.upc.banking.common.application.ResultType;
 
+import java.time.Instant;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
@@ -37,7 +38,8 @@ public class SubscriptionApplicationService {
                 subscriptionId,
                 registerSubscriptionRequest.getName().trim(),
                 registerSubscriptionRequest.getMonthDuration(),
-                registerSubscriptionRequest.getPrice()
+                registerSubscriptionRequest.getPrice(),
+                Instant.now()
         );
 
         CompletableFuture<Object> future = _commandGateway.send(registerSubscription);

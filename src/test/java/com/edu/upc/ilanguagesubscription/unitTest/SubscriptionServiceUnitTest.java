@@ -1,4 +1,4 @@
-package unitTest;
+package com.edu.upc.ilanguagesubscription.unitTest;
 
 
 

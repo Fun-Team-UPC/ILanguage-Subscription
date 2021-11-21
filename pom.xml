@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.edu.upc</groupId>
     <artifactId>ilanguage-subscription</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.2</version>
     <packaging>jar</packaging>
     <name>ilanguage-subscription</name>
     <description>ilanguage-subscription</description>
@@ -129,15 +129,40 @@
         <dependency>
             <groupId>org.example</groupId>
             <artifactId>subscription-contracts</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>1.2</version>
         </dependency>
         <dependency>
             <groupId>pe.edu.upc</groupId>
             <artifactId>banking-common</artifactId>
             <version>0.1.2</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
 
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-spring</artifactId>
+            <version>6.8.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>31.0.1-jre</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-config</artifactId>
+            <version>3.0.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+            <version>3.0.3</version>
+        </dependency>
     </dependencies>
+
 
 
     <build>

@@ -56,7 +56,7 @@ public class Subscription {
     }
 
     @EventSourcingHandler
-    protected void  on(SubscriptionRegistered event) {
+    public void  on(SubscriptionRegistered event) {
         subscriptionId =    event.getSubscriptionId();
         name = event.getName();
         price = event.getPrice();
