@@ -34,12 +34,14 @@ public class SubscriptionApplicationService {
             return Result.failure(notification);
         }
         String subscriptionId = UUID.randomUUID().toString();
+        OcurredOn = Instant now = Instant.now();
+
         RegisterSubscription registerSubscription = new RegisterSubscription(
                 subscriptionId,
                 registerSubscriptionRequest.getName().trim(),
                 registerSubscriptionRequest.getMonthDuration(),
                 registerSubscriptionRequest.getPrice(),
-                Instant.now()
+                OcurredOn
         );
 
         CompletableFuture<Object> future = _commandGateway.send(registerSubscription);

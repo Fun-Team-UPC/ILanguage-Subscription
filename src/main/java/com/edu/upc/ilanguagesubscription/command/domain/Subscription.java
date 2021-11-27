@@ -29,14 +29,13 @@ public class Subscription {
 
     @CommandHandler
     public Subscription(RegisterSubscription command) {
-        Instant now = Instant.now();
+//        Instant now = Instant.now();
         apply(
                 new SubscriptionRegistered(
                         command.getSubscriptionId(),
                         command.getName(),
                         command.getMonthDuration(),
-                        command.getPrice(),
-                        now
+                        command.getPrice()
                 )
         );
     }
